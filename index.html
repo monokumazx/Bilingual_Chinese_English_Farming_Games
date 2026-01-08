@@ -1,0 +1,402 @@
+<!-- proto, missing too many terms-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>牧场物语双语词汇全库 - Ranch Glossary with Descriptions</title>
+    <style>
+        :root {
+            --primary-green: #4a7c44;
+            --soft-green: #e8f5e9;
+            --wood-brown: #8d6e63;
+            --accent-yellow: #fdd835;
+            --text-color: #3e2723;
+            --bg-light: #f1f8e9;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-light);
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* 动态落叶特效容器 */
+        #leaf-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #8bc34a;
+            border-radius: 0 100%;
+            opacity: 0.6;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        header {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            border-bottom: 8px solid var(--wood-brown);
+        }
+
+        nav {
+            background: var(--wood-brown);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 0;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 8px;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            background: var(--accent-yellow);
+            color: var(--text-color);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid #c5e1a5;
+        }
+
+        .section-header {
+            background: var(--primary-green);
+            color: white;
+            padding: 15px 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        th {
+            background-color: var(--soft-green);
+            text-align: left;
+            padding: 15px;
+            color: var(--primary-green);
+            border-bottom: 2px solid #aed581;
+            font-size: 0.95rem;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #f0f4c3;
+            vertical-align: top;
+            font-size: 0.9rem;
+            word-wrap: break-word;
+        }
+
+        tr:nth-child(even) { background-color: #fcfdf5; }
+        tr:hover { background-color: #f1f8e9; }
+
+        .lang-en { font-weight: 600; color: #5d4037; }
+        .desc-box { font-size: 0.85rem; color: #616161; line-height: 1.4; }
+        .desc-box b { color: var(--wood-brown); }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: var(--wood-brown);
+            color: white;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 800px) {
+            th:nth-child(3), td:nth-child(3) { display: none; } /* 移动端隐藏描述以节省空间 */
+            header h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="leaf-container"></div>
+
+    <header>
+        <h1>牧场物语词汇全库</h1>
+        <p>Comprehensive Ranching Glossary (CN/EN)</p>
+    </header>
+
+    <nav>
+        <a href="#tools">工具与武器</a>
+        <a href="#farming">耕种畜牧</a>
+        <a href="#artisan">加工设备</a>
+        <a href="#structures">建筑设施</a>
+        <a href="#resources">资源材料</a>
+        <a href="#minerals">矿物宝石</a>
+        <a href="#mechanics">机制数值</a>
+    </nav>
+
+    <main>
+        <!-- 工具与武器 -->
+        <section id="tools" class="section-card">
+            <div class="section-header">🛠️ 工具与武器 / Tools & Weapons</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">中文 (Chinese)</th>
+                        <th style="width: 25%;">英文 (English)</th>
+                        <th style="width: 50%;">描述与用途 (Description & Uses)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>锄头</td><td class="lang-en">Hoe</td>
+                        <td class="desc-box">用于耕开土地以播种，或挖掘地下的宝藏。<br><b>Used to till soil for planting or dig up artifacts.</b></td>
+                    </tr>
+                    <tr>
+                        <td>喷壶</td><td class="lang-en">Watering Can</td>
+                        <td class="desc-box">为农作物浇水，是植物生长的必需品。<br><b>Used to water crops to keep them growing.</b></td>
+                    </tr>
+                    <tr>
+                        <td>镰刀 / 剪草机</td><td class="lang-en">Scythe / Sickle</td>
+                        <td class="desc-box">割草、收割小麦及清除杂草。<br><b>Used to cut grass, harvest wheat, and clear weeds.</b></td>
+                    </tr>
+                    <tr>
+                        <td>十字镐 / 镐</td><td class="lang-en">Pickaxe</td>
+                        <td class="desc-box">破碎石头、清除地砖或开采矿石。<br><b>Used to break stones, remove paths, and mine ores.</b></td>
+                    </tr>
+                    <tr>
+                        <td>剪毛剪 / 羊毛剪</td><td class="lang-en">Shears / Clippers</td>
+                        <td class="desc-box">从成年羊只身上采集羊毛。<br><b>Used to harvest wool from sheep.</b></td>
+                    </tr>
+                    <tr>
+                        <td>挤奶器</td><td class="lang-en">Milker</td>
+                        <td class="desc-box">从牛或山羊身上采集鲜奶。<br><b>Used to collect milk from cows or goats.</b></td>
+                    </tr>
+                    <tr>
+                        <td>剑 / 匕首 / 弹弓</td><td class="lang-en">Sword / Dagger / Slingshot</td>
+                        <td class="desc-box">在矿井中对抗怪物、自卫。<br><b>Used to fight monsters and defend yourself in mines.</b></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 耕种与畜牧 -->
+        <section id="farming" class="section-card">
+            <div class="section-header">🌱 耕种与畜牧 / Farming & Livestock</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">中文 (Chinese)</th>
+                        <th style="width: 25%;">英文 (English)</th>
+                        <th style="width: 50%;">描述与用途 (Description & Uses)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>播种 / 开垦</td><td class="lang-en">Sowing / Tilling</td>
+                        <td class="desc-box">农业的基础环节：准备土地并放下种子。<br><b>The foundation of farming: preparing land and planting seeds.</b></td>
+                    </tr>
+                    <tr>
+                        <td>施肥</td><td class="lang-en">Fertilizing</td>
+                        <td class="desc-box">提高作物质量或加快生长速度。<br><b>Improves crop quality or increases growth speed.</b></td>
+                    </tr>
+                    <tr>
+                        <td>饲料 / 放牧</td><td class="lang-en">Fodder / Grazing</td>
+                        <td class="desc-box">动物的食物来源，包括室内草料和室外放养。<br><b>Animal food sources, including indoor hay and outdoor grass.</b></td>
+                    </tr>
+                    <tr>
+                        <td>牛棚 / 鸡舍 / 马厩</td><td class="lang-en">Barn / Coop / Stable</td>
+                        <td class="desc-box">安置牲畜、家禽和坐骑的建筑。<br><b>Structures for housing livestock, poultry, and mounts.</b></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 加工设备 -->
+        <section id="artisan" class="section-card">
+            <div class="section-header">🍯 加工设备 / Artisan Equipment</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">中文 (Chinese)</th>
+                        <th style="width: 25%;">英文 (English)</th>
+                        <th style="width: 50%;">描述与用途 (Description & Uses)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>奶酪压榨机</td><td class="lang-en">Cheese Press</td>
+                        <td class="desc-box">将牛奶加工成价值更高的奶酪。<br><b>Processes milk into higher-value cheese.</b></td>
+                    </tr>
+                    <tr>
+                        <td>蛋加工器</td><td class="lang-en">Mayonnaise Machine</td>
+                        <td class="desc-box">将鸡蛋转化为蛋黄酱。<br><b>Turns eggs into mayonnaise.</b></td>
+                    </tr>
+                    <tr>
+                        <td>发酵桶 / 酿造桶</td><td class="lang-en">Cask / Keg</td>
+                        <td class="desc-box">酿造美酒、果汁或陈化农产品。<br><b>Brews wine, juice, or ages artisan goods.</b></td>
+                    </tr>
+                    <tr>
+                        <td>腌制罐</td><td class="lang-en">Preserves Jar</td>
+                        <td class="desc-box">将果蔬制成罐头、果酱或泡菜。<br><b>Turns fruits/veggies into jam or pickles.</b></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 建筑设施 -->
+        <section id="structures" class="section-card">
+            <div class="section-header">🏛️ 建筑与设施 / Farm Structures</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">中文 (Chinese)</th>
+                        <th style="width: 25%;">英文 (English)</th>
+                        <th style="width: 50%;">描述与用途 (Description & Uses)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>出货箱</td><td class="lang-en">Shipping Bin</td>
+                        <td class="desc-box">放入你想卖掉的物品，次日清晨结算金币。<br><b>Drop items inside to sell them for gold overnight.</b></td>
+                    </tr>
+                    <tr>
+                        <td>社区中心</td><td class="lang-en">Community Center</td>
+                        <td class="desc-box">游戏的长期目标，通过捐赠物品修复小镇。<br><b>Long-term goals to restore the town via item bundles.</b></td>
+                    </tr>
+                    <tr>
+                        <td>温室</td><td class="lang-en">Greenhouse</td>
+                        <td class="desc-box">可在任何季节种植任何作物的特殊设施。<br><b>Allows growing any crop regardless of the season.</b></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 矿物与宝石 -->
+        <section id="minerals" class="section-card">
+            <div class="section-header">💎 矿物与宝石 / Minerals & Gemstones</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">中文 (Chinese)</th>
+                        <th style="width: 25%;">英文 (English)</th>
+                        <th style="width: 50%;">描述与用途 (Description & Uses)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>钻石 / 蓝宝石 / 红宝石</td><td class="lang-en">Diamond / Sapphire / Ruby</td>
+                        <td class="desc-box">高价值物品，用于送礼、赚钱或制作高级配方。<br><b>High-value items for gifting, selling, or crafting.</b></td>
+                    </tr>
+                    <tr>
+                        <td>铁矿 / 铜矿 / 铱矿</td><td class="lang-en">Iron / Copper / Iridium Ore</td>
+                        <td class="desc-box">冶炼金属锭的原材料，用于升级工具。<br><b>Raw materials for smelting bars to upgrade tools.</b></td>
+                    </tr>
+                    <tr>
+                        <td>雷公蛋 / 晶洞</td><td class="lang-en">Thunder Egg / Geode</td>
+                        <td class="desc-box">由铁匠打破，内含随机矿石或宝石。<br><b>Broken by the blacksmith to find random minerals.</b></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="padding: 10px 25px; font-size: 0.8rem; background: #fafafa;">注：更多细节如 亚历山大变石(Alexandrite)、坦桑石(Tanzanite)等均属珍稀藏品。</div>
+        </section>
+
+        <!-- 游戏机制 -->
+        <section id="mechanics" class="section-card">
+            <div class="section-header">⚖️ 游戏机制 / Game Mechanics</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">中文 (Chinese)</th>
+                        <th style="width: 25%;">英文 (English)</th>
+                        <th style="width: 50%;">描述与用途 (Description & Uses)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>体力 / 精力</td><td class="lang-en">Stamina / Energy</td>
+                        <td class="desc-box">玩家劳动的消耗值，归零时会精疲力竭。<br><b>Consents during labor; player faints if it reaches zero.</b></td>
+                    </tr>
+                    <tr>
+                        <td>好感度</td><td class="lang-en">Friendship Level</td>
+                        <td class="desc-box">衡量玩家与NPC关系深浅的指标。<br><b>Measures the relationship between player and NPCs.</b></td>
+                    </tr>
+                    <tr>
+                        <td>每日好运</td><td class="lang-en">Daily Luck</td>
+                        <td class="desc-box">影响掉率、开采成功率及随机事件的概率。<br><b>Affects drop rates, mining success, and random events.</b></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 牧场词汇表 | 整理自玩家文档 | 祝你拥有愉快的一天！</p>
+    </footer>
+
+    <script>
+        // 落叶生成逻辑
+        const container = document.getElementById('leaf-container');
+        const colors = ['#8bc34a', '#aed581', '#dce775', '#fff176'];
+        
+        function addLeaf() {
+            const leaf = document.createElement('div');
+            leaf.classList.add('leaf');
+            leaf.style.left = Math.random() * 100 + 'vw';
+            leaf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            leaf.style.width = (Math.random() * 10 + 10) + 'px';
+            leaf.style.height = leaf.style.width;
+            leaf.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            leaf.style.animationDelay = (Math.random() * 5) + 's';
+            container.appendChild(leaf);
+            
+            setTimeout(() => leaf.remove(), 11000);
+        }
+
+        setInterval(addLeaf, 400);
+        for(let i=0; i<10; i++) addLeaf();
+    </script>
+</body>
+</html>
