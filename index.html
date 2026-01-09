@@ -1,402 +1,754 @@
-<!-- proto, missing too many terms-->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>牧场物语双语词汇全库 - Ranch Glossary with Descriptions</title>
+    <title>牧场游戏双语词汇对照表</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary-green: #4a7c44;
-            --soft-green: #e8f5e9;
-            --wood-brown: #8d6e63;
-            --accent-yellow: #fdd835;
-            --text-color: #3e2723;
-            --bg-light: #f1f8e9;
-        }
-
-        body {
-            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            background: var(--bg-light);
+        * {
             margin: 0;
             padding: 0;
-            color: var(--text-color);
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f9ee;
+            color: #333;
             line-height: 1.6;
+            padding: 20px;
+            background-image: linear-gradient(to bottom, #e6f3d8, #f5f9ee);
         }
-
-        /* 动态落叶特效容器 */
-        #leaf-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1000;
-        }
-
-        .leaf {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: #8bc34a;
-            border-radius: 0 100%;
-            opacity: 0.6;
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-        }
-
-        header {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 280px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-            border-bottom: 8px solid var(--wood-brown);
-        }
-
-        nav {
-            background: var(--wood-brown);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 12px 0;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 8px;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            background: rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        nav a:hover {
-            background: var(--accent-yellow);
-            color: var(--text-color);
-        }
-
-        main {
+        
+        .container {
             max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        .section-card {
-            background: white;
-            border-radius: 12px;
-            margin-bottom: 40px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            border: 1px solid #c5e1a5;
+            border: 1px solid #d4e7c5;
         }
-
-        .section-header {
-            background: var(--primary-green);
+        
+        header {
+            background: linear-gradient(135deg, #7ebc59 0%, #4a8c31 100%);
             color: white;
-            padding: 15px 25px;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 5px solid #3a7525;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
             font-size: 1.2rem;
-            font-weight: bold;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
         }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
+        
+        .intro {
+            padding: 25px;
+            background-color: #f0f7e9;
+            border-bottom: 1px solid #d4e7c5;
+            text-align: center;
+            font-size: 1.1rem;
         }
-
-        th {
-            background-color: var(--soft-green);
-            text-align: left;
-            padding: 15px;
-            color: var(--primary-green);
-            border-bottom: 2px solid #aed581;
+        
+        .controls {
+            padding: 20px;
+            background-color: #e9f4df;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #d4e7c5;
+        }
+        
+        .category-filter {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .filter-btn {
+            background-color: #7ebc59;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .filter-btn:hover {
+            background-color: #6aa847;
+            transform: translateY(-2px);
+        }
+        
+        .filter-btn.active {
+            background-color: #3a7525;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .search-box {
+            padding: 10px 15px;
+            border: 2px solid #7ebc59;
+            border-radius: 50px;
+            width: 300px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .search-box:focus {
+            border-color: #3a7525;
+            box-shadow: 0 0 0 3px rgba(122, 188, 89, 0.2);
+        }
+        
+        .glossary-container {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .category-section {
+            grid-column: 1 / -1;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #7ebc59;
+        }
+        
+        .category-section:first-of-type {
+            margin-top: 10px;
+        }
+        
+        .category-title {
+            font-size: 1.8rem;
+            color: #3a7525;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category-title i {
+            font-size: 1.5rem;
+        }
+        
+        .entry-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0eed3;
+            transition: all 0.3s;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .entry-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-color: #7ebc59;
+        }
+        
+        .entry-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #f0f7e9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.8rem;
+            color: #4a8c31;
+        }
+        
+        .entry-content {
+            flex: 1;
+        }
+        
+        .entry-chinese {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2c5a1d;
+            margin-bottom: 5px;
+        }
+        
+        .entry-english {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .entry-description {
             font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+            background-color: #f9fdf5;
+            padding: 10px;
+            border-radius: 8px;
+            border-left: 3px solid #c1e0a9;
         }
-
-        td {
-            padding: 15px;
-            border-bottom: 1px solid #f0f4c3;
-            vertical-align: top;
-            font-size: 0.9rem;
-            word-wrap: break-word;
-        }
-
-        tr:nth-child(even) { background-color: #fcfdf5; }
-        tr:hover { background-color: #f1f8e9; }
-
-        .lang-en { font-weight: 600; color: #5d4037; }
-        .desc-box { font-size: 0.85rem; color: #616161; line-height: 1.4; }
-        .desc-box b { color: var(--wood-brown); }
-
+        
         footer {
             text-align: center;
-            padding: 40px;
-            background: var(--wood-brown);
-            color: white;
-            margin-top: 50px;
+            padding: 25px;
+            background-color: #2c5a1d;
+            color: #d4e7c5;
+            font-size: 0.9rem;
+            border-top: 1px solid #3a7525;
         }
-
-        @media (max-width: 800px) {
-            th:nth-child(3), td:nth-child(3) { display: none; } /* 移动端隐藏描述以节省空间 */
-            header h1 { font-size: 1.8rem; }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 150px;
+        }
+        
+        @media (max-width: 768px) {
+            .glossary-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            color: #777;
+            font-size: 1.2rem;
+        }
+        
+        .highlight {
+            background-color: #fff9c4;
+            padding: 2px 4px;
+            border-radius: 3px;
         }
     </style>
 </head>
 <body>
-
-    <div id="leaf-container"></div>
-
-    <header>
-        <h1>牧场物语词汇全库</h1>
-        <p>Comprehensive Ranching Glossary (CN/EN)</p>
-    </header>
-
-    <nav>
-        <a href="#tools">工具与武器</a>
-        <a href="#farming">耕种畜牧</a>
-        <a href="#artisan">加工设备</a>
-        <a href="#structures">建筑设施</a>
-        <a href="#resources">资源材料</a>
-        <a href="#minerals">矿物宝石</a>
-        <a href="#mechanics">机制数值</a>
-    </nav>
-
-    <main>
-        <!-- 工具与武器 -->
-        <section id="tools" class="section-card">
-            <div class="section-header">🛠️ 工具与武器 / Tools & Weapons</div>
-            <table>
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">中文 (Chinese)</th>
-                        <th style="width: 25%;">英文 (English)</th>
-                        <th style="width: 50%;">描述与用途 (Description & Uses)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>锄头</td><td class="lang-en">Hoe</td>
-                        <td class="desc-box">用于耕开土地以播种，或挖掘地下的宝藏。<br><b>Used to till soil for planting or dig up artifacts.</b></td>
-                    </tr>
-                    <tr>
-                        <td>喷壶</td><td class="lang-en">Watering Can</td>
-                        <td class="desc-box">为农作物浇水，是植物生长的必需品。<br><b>Used to water crops to keep them growing.</b></td>
-                    </tr>
-                    <tr>
-                        <td>镰刀 / 剪草机</td><td class="lang-en">Scythe / Sickle</td>
-                        <td class="desc-box">割草、收割小麦及清除杂草。<br><b>Used to cut grass, harvest wheat, and clear weeds.</b></td>
-                    </tr>
-                    <tr>
-                        <td>十字镐 / 镐</td><td class="lang-en">Pickaxe</td>
-                        <td class="desc-box">破碎石头、清除地砖或开采矿石。<br><b>Used to break stones, remove paths, and mine ores.</b></td>
-                    </tr>
-                    <tr>
-                        <td>剪毛剪 / 羊毛剪</td><td class="lang-en">Shears / Clippers</td>
-                        <td class="desc-box">从成年羊只身上采集羊毛。<br><b>Used to harvest wool from sheep.</b></td>
-                    </tr>
-                    <tr>
-                        <td>挤奶器</td><td class="lang-en">Milker</td>
-                        <td class="desc-box">从牛或山羊身上采集鲜奶。<br><b>Used to collect milk from cows or goats.</b></td>
-                    </tr>
-                    <tr>
-                        <td>剑 / 匕首 / 弹弓</td><td class="lang-en">Sword / Dagger / Slingshot</td>
-                        <td class="desc-box">在矿井中对抗怪物、自卫。<br><b>Used to fight monsters and defend yourself in mines.</b></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- 耕种与畜牧 -->
-        <section id="farming" class="section-card">
-            <div class="section-header">🌱 耕种与畜牧 / Farming & Livestock</div>
-            <table>
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">中文 (Chinese)</th>
-                        <th style="width: 25%;">英文 (English)</th>
-                        <th style="width: 50%;">描述与用途 (Description & Uses)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>播种 / 开垦</td><td class="lang-en">Sowing / Tilling</td>
-                        <td class="desc-box">农业的基础环节：准备土地并放下种子。<br><b>The foundation of farming: preparing land and planting seeds.</b></td>
-                    </tr>
-                    <tr>
-                        <td>施肥</td><td class="lang-en">Fertilizing</td>
-                        <td class="desc-box">提高作物质量或加快生长速度。<br><b>Improves crop quality or increases growth speed.</b></td>
-                    </tr>
-                    <tr>
-                        <td>饲料 / 放牧</td><td class="lang-en">Fodder / Grazing</td>
-                        <td class="desc-box">动物的食物来源，包括室内草料和室外放养。<br><b>Animal food sources, including indoor hay and outdoor grass.</b></td>
-                    </tr>
-                    <tr>
-                        <td>牛棚 / 鸡舍 / 马厩</td><td class="lang-en">Barn / Coop / Stable</td>
-                        <td class="desc-box">安置牲畜、家禽和坐骑的建筑。<br><b>Structures for housing livestock, poultry, and mounts.</b></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- 加工设备 -->
-        <section id="artisan" class="section-card">
-            <div class="section-header">🍯 加工设备 / Artisan Equipment</div>
-            <table>
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">中文 (Chinese)</th>
-                        <th style="width: 25%;">英文 (English)</th>
-                        <th style="width: 50%;">描述与用途 (Description & Uses)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>奶酪压榨机</td><td class="lang-en">Cheese Press</td>
-                        <td class="desc-box">将牛奶加工成价值更高的奶酪。<br><b>Processes milk into higher-value cheese.</b></td>
-                    </tr>
-                    <tr>
-                        <td>蛋加工器</td><td class="lang-en">Mayonnaise Machine</td>
-                        <td class="desc-box">将鸡蛋转化为蛋黄酱。<br><b>Turns eggs into mayonnaise.</b></td>
-                    </tr>
-                    <tr>
-                        <td>发酵桶 / 酿造桶</td><td class="lang-en">Cask / Keg</td>
-                        <td class="desc-box">酿造美酒、果汁或陈化农产品。<br><b>Brews wine, juice, or ages artisan goods.</b></td>
-                    </tr>
-                    <tr>
-                        <td>腌制罐</td><td class="lang-en">Preserves Jar</td>
-                        <td class="desc-box">将果蔬制成罐头、果酱或泡菜。<br><b>Turns fruits/veggies into jam or pickles.</b></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- 建筑设施 -->
-        <section id="structures" class="section-card">
-            <div class="section-header">🏛️ 建筑与设施 / Farm Structures</div>
-            <table>
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">中文 (Chinese)</th>
-                        <th style="width: 25%;">英文 (English)</th>
-                        <th style="width: 50%;">描述与用途 (Description & Uses)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>出货箱</td><td class="lang-en">Shipping Bin</td>
-                        <td class="desc-box">放入你想卖掉的物品，次日清晨结算金币。<br><b>Drop items inside to sell them for gold overnight.</b></td>
-                    </tr>
-                    <tr>
-                        <td>社区中心</td><td class="lang-en">Community Center</td>
-                        <td class="desc-box">游戏的长期目标，通过捐赠物品修复小镇。<br><b>Long-term goals to restore the town via item bundles.</b></td>
-                    </tr>
-                    <tr>
-                        <td>温室</td><td class="lang-en">Greenhouse</td>
-                        <td class="desc-box">可在任何季节种植任何作物的特殊设施。<br><b>Allows growing any crop regardless of the season.</b></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- 矿物与宝石 -->
-        <section id="minerals" class="section-card">
-            <div class="section-header">💎 矿物与宝石 / Minerals & Gemstones</div>
-            <table>
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">中文 (Chinese)</th>
-                        <th style="width: 25%;">英文 (English)</th>
-                        <th style="width: 50%;">描述与用途 (Description & Uses)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>钻石 / 蓝宝石 / 红宝石</td><td class="lang-en">Diamond / Sapphire / Ruby</td>
-                        <td class="desc-box">高价值物品，用于送礼、赚钱或制作高级配方。<br><b>High-value items for gifting, selling, or crafting.</b></td>
-                    </tr>
-                    <tr>
-                        <td>铁矿 / 铜矿 / 铱矿</td><td class="lang-en">Iron / Copper / Iridium Ore</td>
-                        <td class="desc-box">冶炼金属锭的原材料，用于升级工具。<br><b>Raw materials for smelting bars to upgrade tools.</b></td>
-                    </tr>
-                    <tr>
-                        <td>雷公蛋 / 晶洞</td><td class="lang-en">Thunder Egg / Geode</td>
-                        <td class="desc-box">由铁匠打破，内含随机矿石或宝石。<br><b>Broken by the blacksmith to find random minerals.</b></td>
-                    </tr>
-                </tbody>
-            </table>
-            <div style="padding: 10px 25px; font-size: 0.8rem; background: #fafafa;">注：更多细节如 亚历山大变石(Alexandrite)、坦桑石(Tanzanite)等均属珍稀藏品。</div>
-        </section>
-
-        <!-- 游戏机制 -->
-        <section id="mechanics" class="section-card">
-            <div class="section-header">⚖️ 游戏机制 / Game Mechanics</div>
-            <table>
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">中文 (Chinese)</th>
-                        <th style="width: 25%;">英文 (English)</th>
-                        <th style="width: 50%;">描述与用途 (Description & Uses)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>体力 / 精力</td><td class="lang-en">Stamina / Energy</td>
-                        <td class="desc-box">玩家劳动的消耗值，归零时会精疲力竭。<br><b>Consents during labor; player faints if it reaches zero.</b></td>
-                    </tr>
-                    <tr>
-                        <td>好感度</td><td class="lang-en">Friendship Level</td>
-                        <td class="desc-box">衡量玩家与NPC关系深浅的指标。<br><b>Measures the relationship between player and NPCs.</b></td>
-                    </tr>
-                    <tr>
-                        <td>每日好运</td><td class="lang-en">Daily Luck</td>
-                        <td class="desc-box">影响掉率、开采成功率及随机事件的概率。<br><b>Affects drop rates, mining success, and random events.</b></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </main>
-
-    <footer>
-        <p>© 2026 牧场词汇表 | 整理自玩家文档 | 祝你拥有愉快的一天！</p>
-    </footer>
+    <div class="container">
+        <header>
+            <h1>牧场游戏双语词汇对照表</h1>
+            <p class="subtitle">中文-英文对照 | 包含工具、资源、动物、建筑、游戏机制等完整词汇表</p>
+        </header>
+        
+        <div class="intro">
+            <p>本词汇表收录了牧场/农场类游戏中的常见术语，提供中文与英文对照，并添加了简要说明。使用下方的筛选按钮或搜索框快速查找您需要的词汇。</p>
+        </div>
+        
+        <div class="controls">
+            <div class="category-filter">
+                <button class="filter-btn active" data-category="all">全部词汇</button>
+                <button class="filter-btn" data-category="tools">工具</button>
+                <button class="filter-btn" data-category="farming">耕种</button>
+                <button class="filter-btn" data-category="livestock">畜牧</button>
+                <button class="filter-btn" data-category="buildings">建筑</button>
+                <button class="filter-btn" data-category="resources">资源</button>
+                <button class="filter-btn" data-category="crafting">制作</button>
+                <button class="filter-btn" data-category="combat">战斗</button>
+            </div>
+            <input type="text" class="search-box" placeholder="搜索中文或英文词汇...">
+        </div>
+        
+        <div class="glossary-container" id="glossary-container">
+            <!-- 词汇将通过JavaScript动态生成 -->
+        </div>
+        
+        <footer>
+            <div class="stats">
+                <div class="stat-box">
+                    <div>词汇总数</div>
+                    <div id="total-words">0</div>
+                </div>
+                <div class="stat-box">
+                    <div>分类数量</div>
+                    <div>12</div>
+                </div>
+                <div class="stat-box">
+                    <div>最后更新</div>
+                    <div>2023年10月</div>
+                </div>
+            </div>
+            <p>本词汇表基于牧场游戏术语整理，适用于游戏玩家、翻译人员和开发者参考使用。</p>
+            <p>图标来源: Font Awesome | 设计: 牧场词汇表</p>
+        </footer>
+    </div>
 
     <script>
-        // 落叶生成逻辑
-        const container = document.getElementById('leaf-container');
-        const colors = ['#8bc34a', '#aed581', '#dce775', '#fff176'];
-        
-        function addLeaf() {
-            const leaf = document.createElement('div');
-            leaf.classList.add('leaf');
-            leaf.style.left = Math.random() * 100 + 'vw';
-            leaf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            leaf.style.width = (Math.random() * 10 + 10) + 'px';
-            leaf.style.height = leaf.style.width;
-            leaf.style.animationDuration = (Math.random() * 4 + 6) + 's';
-            leaf.style.animationDelay = (Math.random() * 5) + 's';
-            container.appendChild(leaf);
+        // 词汇数据
+        const glossaryData = [
+            // 工具类
+            { chinese: "锄头", english: "Hoe", category: "tools", icon: "fas fa-dig", description: "用于翻耕土地，准备种植作物的工具。" },
+            { chinese: "喷壶", english: "Watering Can", category: "tools", icon: "fas fa-tint", description: "用于给作物浇水，促进植物生长。" },
+            { chinese: "镰刀", english: "Sickle", category: "tools", icon: "fas fa-cut", description: "用于收割成熟作物或清除杂草的工具。" },
+            { chinese: "斧头", english: "Axe", category: "tools", icon: "fas fa-tree", description: "用于砍伐树木，获取木材的工具。" },
+            { chinese: "锤子", english: "Hammer", category: "tools", icon: "fas fa-hammer", description: "用于敲碎石头或建造建筑的工具。" },
+            { chinese: "剪毛剪", english: "Shears", category: "tools", icon: "fas fa-cut", description: "用于从羊身上剪取羊毛的工具。" },
+            { chinese: "剪草机 / 镰刀", english: "Scythe", category: "tools", icon: "fas fa-leaf", description: "高效收割作物或清除大片杂草的工具。" },
+            { chinese: "十字镐 / 镐", english: "Pickaxe", category: "tools", icon: "fas fa-mountain", description: "用于开采矿石和石头的工具。" },
+            { chinese: "搅拌机 / 混合机", english: "Mixer / Grinder", category: "tools", icon: "fas fa-blender", description: "用于混合或研磨材料的工具。" },
+            { chinese: "工具升级（铜/铁/金/铱）", english: "Tool Upgrades (Copper/Iron/Gold/Iridium)", category: "tools", icon: "fas fa-tools", description: "提升工具效率和耐久度的升级系统。" },
+            { chinese: "修理/维护", english: "Repair / Maintenance", category: "tools", icon: "fas fa-wrench", description: "修复损坏的工具以恢复其功能。" },
+            { chinese: "钓鱼卷轴 / 渔具配件", english: "Fishing Tackle / Lures", category: "tools", icon: "fas fa-fish", description: "用于提高钓鱼成功率的配件和诱饵。" },
             
-            setTimeout(() => leaf.remove(), 11000);
-        }
+            // 耕种阶段与活动
+            { chinese: "开垦", english: "Tilling / Plowing", category: "farming", icon: "fas fa-seedling", description: "准备土地以进行种植的第一步。" },
+            { chinese: "播种", english: "Sowing / Planting", category: "farming", icon: "fas fa-seedling", description: "将种子放入已开垦的土地中。" },
+            { chinese: "浇水", english: "Watering", category: "farming", icon: "fas fa-tint", description: "为作物提供水分，促进生长。" },
+            { chinese: "施肥", english: "Fertilizing", category: "farming", icon: "fas fa-prescription-bottle", description: "为土壤添加营养物质以提高作物产量或品质。" },
+            { chinese: "杂草", english: "Weeds", category: "farming", icon: "fas fa-leaf", description: "不需要的植物，会与作物竞争资源。" },
+            { chinese: "收获", english: "Harvesting / Gathering", category: "farming", icon: "fas fa-apple-alt", description: "收集成熟的作物或产品。" },
+            { chinese: "灌溉", english: "Irrigation", category: "farming", icon: "fas fa-water", description: "通过系统化的方式为作物供水。" },
+            { chinese: "轮作", english: "Crop Rotation", category: "farming", icon: "fas fa-sync-alt", description: "在不同季节或年份轮换种植不同作物以保持土壤肥力。" },
+            
+            // 畜牧相关
+            { chinese: "挤奶器", english: "Milker", category: "livestock", icon: "fas fa-wine-bottle", description: "用于从奶牛身上获取牛奶的工具。" },
+            { chinese: "铃铛", english: "Bell", category: "livestock", icon: "fas fa-bell", description: "用于召集牲畜的工具。" },
+            { chinese: "缰绳", english: "Reins", category: "livestock", icon: "fas fa-horse-head", description: "用于控制马匹的工具。" },
+            { chinese: "计步器", english: "Pedometer", category: "livestock", icon: "fas fa-walking", description: "测量动物活动量的设备。" },
+            { chinese: "刷子", english: "Brush", category: "livestock", icon: "fas fa-brush", description: "用于清洁和梳理动物毛发，提高动物幸福度。" },
+            { chinese: "羊毛剪刀", english: "Sheep Shearing Clippers", category: "livestock", icon: "fas fa-cut", description: "专门用于剪取羊毛的工具。" },
+            { chinese: "婴儿摇铃", english: "Babu Rattle", category: "livestock", icon: "fas fa-baby", description: "用于安抚幼畜的玩具。" },
+            { chinese: "牲畜", english: "Livestock", category: "livestock", icon: "fas fa-paw", description: "农场饲养的动物，如牛、羊、鸡等。" },
+            { chinese: "饲料", english: "Fodder / Feed", category: "livestock", icon: "fas fa-wheat-awn", description: "用于喂养动物的食物。" },
+            { chinese: "产出", english: "Produce / Yield", category: "livestock", icon: "fas fa-egg", description: "动物产出的产品，如牛奶、鸡蛋、羊毛等。" },
+            { chinese: "放牧", english: "Grazing / Herding", category: "livestock", icon: "fas fa-cloud-sun", description: "让牲畜在户外吃草的活动。" },
+            { chinese: "马厩", english: "Stable", category: "livestock", icon: "fas fa-horse", description: "饲养马匹的建筑。" },
+            { chinese: "鸡舍", english: "Coop", category: "livestock", icon: "fas fa-kiwi-bird", description: "饲养家禽的建筑。" },
+            { chinese: "牛棚 / 谷仓", english: "Barn", category: "livestock", icon: "fas fa-cow", description: "饲养牛等大型牲畜的建筑。" },
+            
+            // 武器类
+            { chinese: "剑", english: "Sword", category: "combat", icon: "fas fa-sword", description: "近战武器，用于对抗敌人。" },
+            { chinese: "棍棒", english: "Bat", category: "combat", icon: "fas fa-baseball-bat", description: "简单的打击武器。" },
+            { chinese: "匕首", english: "Dagger", category: "combat", icon: "fas fa-dagger", description: "短小轻便的刺击武器。" },
+            { chinese: "弹弓", english: "Slingshot / Sling", category: "combat", icon: "fas fa-slash", description: "远程投掷武器，使用小石子作为弹药。" },
+            { chinese: "棍棒", english: "Club", category: "combat", icon: "fas fa-hammer", description: "重型打击武器。" },
+            
+            // 加工设备与匠人建筑
+            { chinese: "熔炉", english: "Furnace", category: "crafting", icon: "fas fa-fire", description: "用于熔炼矿石和金属的设备。" },
+            { chinese: "工坊 / 加工机", english: "Machine / Processing Unit", category: "crafting", icon: "fas fa-industry", description: "用于加工原材料的生产设备。" },
+            { chinese: "蜂箱", english: "Bee House", category: "crafting", icon: "fas fa-bee", description: "饲养蜜蜂以生产蜂蜜的建筑。" },
+            { chinese: "奶酪压榨机", english: "Cheese Press", category: "crafting", icon: "fas fa-cheese", description: "将牛奶加工成奶酪的设备。" },
+            { chinese: "蛋做机 / 蛋加工器", english: "Mayonnaise Machine", category: "crafting", icon: "fas fa-egg", description: "将鸡蛋加工成蛋黄酱的设备。" },
+            { chinese: "腌制罐 / 果酱罐", english: "Preserves Jar / Pickling Jar", category: "crafting", icon: "fas fa-jar", description: "用于腌制蔬菜或制作果酱的容器。" },
+            { chinese: "种子机", english: "Seed Maker", category: "crafting", icon: "fas fa-seedling", description: "将作物加工成种子的设备。" },
+            { chinese: "水晶机", english: "Crystalarium / Gem Refiner", category: "crafting", icon: "fas fa-gem", description: "复制或精炼宝石的设备。" },
+            { chinese: "回收机", english: "Recycler", category: "crafting", icon: "fas fa-recycle", description: "将废料转化为有用材料的设备。" },
+            { chinese: "发酵桶 / 酒窖", english: "Cask / Barrel", category: "crafting", icon: "fas fa-wine-bottle", description: "用于发酵和酿酒的容器。" },
+            
+            // 建筑与设施
+            { chinese: "升级后的鸡舍（豪华鸡舍）", english: "Deluxe Coop / Upgraded Coop", category: "buildings", icon: "fas fa-home", description: "提供更多空间和设施的鸡舍升级版。" },
+            { chinese: "升级后的牛棚 / 豪华牛棚", english: "Deluxe Barn / Big Barn", category: "buildings", icon: "fas fa-warehouse", description: "提供更多空间和设施的牛棚升级版。" },
+            { chinese: "牲畜围栏（木/铁/篱笆）", english: "Fences (Wood/Iron/Stone)", category: "buildings", icon: "fas fa-border-all", description: "用于圈养牲畜的围栏，有不同材质。" },
+            { chinese: "温室", english: "Greenhouse", category: "buildings", icon: "fas fa-temperature-high", description: "允许在任何季节种植作物的建筑。" },
+            { chinese: "社区中心", english: "Community Center", category: "buildings", icon: "fas fa-users", description: "村民聚集和举办活动的场所。" },
+            { chinese: "商贩摊位 / 流动商人", english: "Traveling Cart / Merchant Stall", category: "buildings", icon: "fas fa-shopping-cart", description: "出售稀有商品的移动商店。" },
+            { chinese: "邮箱 / 邮件系统", english: "Mailbox / Mail System", category: "buildings", icon: "fas fa-envelope", description: "接收信件和包裹的系统。" },
+            { chinese: "运货箱 / 出货箱", english: "Shipping Bin", category: "buildings", icon: "fas fa-box", description: "出售农场产品的箱子。" },
+            { chinese: "井 / 供水点", english: "Well / Water Source", category: "buildings", icon: "fas fa-water", description: "提供水源的建筑。" },
+            { chinese: "天桥 / 小径 / 路面", english: "Bridge / Paths", category: "buildings", icon: "fas fa-road", description: "连接不同区域的道路或桥梁。" },
+            
+            // 资源与材料
+            { chinese: "种子", english: "Seeds", category: "resources", icon: "fas fa-seedling", description: "用于种植作物的起始材料。" },
+            { chinese: "矿石", english: "Ore", category: "resources", icon: "fas fa-gem", description: "从矿山中开采的矿物原料。" },
+            { chinese: "堆肥", english: "Compost", category: "resources", icon: "fas fa-recycle", description: "有机物质分解形成的肥料。" },
+            { chinese: "石头", english: "Stone", category: "resources", icon: "fas fa-mountain", description: "常见的建筑材料。" },
+            { chinese: "粘土", english: "Clay", category: "resources", icon: "fas fa-cube", description: "用于制作陶器等物品的材料。" },
+            { chinese: "稻草", english: "Straw", category: "resources", icon: "fas fa-wheat-awn", description: "干燥的植物茎秆，用于动物 bedding。" },
+            { chinese: "铱矿石", english: "Iridium Ore", category: "resources", icon: "fas fa-gem", description: "稀有金属矿石，用于高级工具和升级。" },
+            { chinese: "木材", english: "Lumber / Timber", category: "resources", icon: "fas fa-tree", description: "加工过的木头，用于建筑和制作。" },
+            { chinese: "硬木", english: "Hardwood", category: "resources", icon: "fas fa-tree", description: "坚硬耐用的木材，用于高级建筑。" },
+            { chinese: "橡子", english: "Acorn", category: "resources", icon: "fas fa-seedling", description: "橡树的种子，可以种植成树。" },
+            { chinese: "枫树种子", english: "Maple Seed", category: "resources", icon: "fas fa-seedling", description: "枫树的种子，可以种植成树。" },
+            { chinese: "松果", english: "Pine Cone", category: "resources", icon: "fas fa-seedling", description: "松树的种子，可以种植成树。" },
+            { chinese: "农舍", english: "Farmhouse", category: "buildings", icon: "fas fa-home", description: "玩家的住所，可以升级和扩建。" },
+            { chinese: "仓库 / 谷仓", english: "Silo / Barn", category: "buildings", icon: "fas fa-warehouse", description: "存储饲料和农产品的建筑。" },
+            { chinese: "加工坊", english: "Workshop / Maker Shed", category: "buildings", icon: "fas fa-tools", description: "用于制作和加工物品的工作空间。" },
+            { chinese: "磨坊", english: "Mill", category: "buildings", icon: "fas fa-wind", description: "将小麦磨成面粉的建筑。" },
+            { chinese: "酿造桶", english: "Cask", category: "crafting", icon: "fas fa-wine-bottle", description: "用于酿造酒类和陈化产品的容器。" },
+            { chinese: "腌制罐", english: "Pickle Jar", category: "crafting", icon: "fas fa-jar", description: "用于腌制蔬菜的罐子。" },
+            
+            // 游戏机制与数值
+            { chinese: "每日好运值 / 天气影响", english: "Daily Luck / Weather Effects", category: "mechanics", icon: "fas fa-cloud-sun", description: "影响游戏事件概率的每日随机值。" },
+            { chinese: "季节切换机制", english: "Season Cycle", category: "mechanics", icon: "fas fa-calendar-alt", description: "游戏中的季节变化系统，影响可种植作物和活动。" },
+            { chinese: "持久度 / 工具耐久（若有）", english: "Durability (if applicable)", category: "mechanics", icon: "fas fa-shield-alt", description: "工具和物品的使用寿命。" },
+            { chinese: "经验值（技能升级）", english: "Experience Points (Skill Progression)", category: "mechanics", icon: "fas fa-chart-line", description: "通过活动获得的点数，用于提升技能等级。" },
+            { chinese: "存档 / 多存档管理", english: "Save / Save Slots", category: "mechanics", icon: "fas fa-save", description: "游戏进度保存系统。" },
+            
+            // 战斗、怪物与危险
+            { chinese: "怪物种类（史莱姆、骷髅等）", english: "Monster Types (Slimes, Skeletons, etc.)", category: "combat", icon: "fas fa-ghost", description: "游戏中出现的敌对生物种类。" },
+            { chinese: "头目 / 地下城boss", english: "Bosses / Dungeon Boss", category: "combat", icon: "fas fa-crown", description: "地下城中的强大敌人，通常需要特殊策略击败。" },
+            { chinese: "伤害 / 护甲 / 防御", english: "Damage / Armor / Defense", category: "combat", icon: "fas fa-shield-alt", description: "战斗中的攻击和防御数值系统。" },
+            { chinese: "战利品 / 掉落物", english: "Loot / Drops", category: "combat", icon: "fas fa-coins", description: "击败敌人后获得的物品。" },
+            { chinese: "怪物巢穴 / 生物群落", english: "Monster Den / Biome", category: "combat", icon: "fas fa-mountain", description: "怪物聚集的区域或特定生态环境。" },
+            
+            // 成就、藏品与目标
+            { chinese: "成就 / 奖杯", english: "Achievements / Trophies", category: "mechanics", icon: "fas fa-trophy", description: "完成特定挑战后获得的奖励。" },
+            { chinese: "收藏（博物馆/社区中心）", english: "Collections (Museum / Community Center)", category: "mechanics", icon: "fas fa-collection", description: "收集特定物品以完成博物馆或社区中心展示。" },
+            { chinese: "捐赠 / 拼图包（束/公会包）", english: "Bundles / Donation Packs", category: "mechanics", icon: "fas fa-gift", description: "将特定物品组合捐赠以解锁奖励。" },
+            { chinese: "年度/周度目标", english: "Seasonal/Weekly Goals", category: "mechanics", icon: "fas fa-bullseye", description: "有时间限制的游戏目标。" },
+            
+            // 采集、采矿与钓鱼
+            { chinese: "深处矿层 / 矿井层数", english: "Mine Levels / Depth", category: "resources", icon: "fas fa-layer-group", description: "矿井的不同深度层级，每层有不同资源。" },
+            { chinese: "矿车 / 电梯", english: "Minecart / Elevator", category: "resources", icon: "fas fa-tram", description: "在矿井中快速移动的交通工具。" },
+            { chinese: "宝箱 / 掉落物", english: "Chests / Drops", category: "resources", icon: "fas fa-box-open", description: "在探索过程中发现的容器或物品。" },
+            { chinese: "钓场类型（淡水/海水/地下）", english: "Fishing Locations (Fresh/Salt/Underground)", category: "resources", icon: "fas fa-water", description: "不同类型的钓鱼地点，各有特定鱼类。" },
+            { chinese: "鱼饵 / 渔具升级", english: "Bait / Rod Upgrades", category: "resources", icon: "fas fa-fish", description: "提高钓鱼成功率的消耗品和装备升级。" },
+            { chinese: "稀有鱼 / 传说鱼", english: "Rare Fish / Legendary Fish", category: "resources", icon: "fas fa-fish", description: "难以捕获的特殊鱼类，通常有高价值。" },
+            
+            // 经济、市场与交易
+            { chinese: "市场摊位 / 农贸市场", english: "Market Stall / Farmer's Market", category: "mechanics", icon: "fas fa-store", description: "出售农场产品和购买物品的场所。" },
+            { chinese: "买卖订单 / 交付任务", english: "Orders / Delivery Quests", category: "mechanics", icon: "fas fa-tasks", description: "完成特定物品的交付以获得奖励。" },
+            { chinese: "合同 / 长期供应", english: "Contracts / Bulk Orders", category: "mechanics", icon: "fas fa-file-contract", description: "长期大量供应特定物品的协议。" },
+            { chinese: "物价波动 / 市场供需", english: "Price Fluctuation / Supply & Demand", category: "mechanics", icon: "fas fa-chart-line", description: "商品价格根据市场情况变化的系统。" },
+            { chinese: "库存/仓储上限", english: "Inventory / Storage Cap", category: "mechanics", icon: "fas fa-boxes", description: "玩家可以携带和存储的物品数量限制。" },
+            
+            // 社区、NPC 与活动
+            { chinese: "好感度 / 好友等级", english: "Friendship / Relationship Level", category: "mechanics", icon: "fas fa-heart", description: "与NPC关系亲密度数值，通过互动提升。" },
+            { chinese: "婚礼 / 配偶系统", english: "Marriage / Spouse System", category: "mechanics", icon: "fas fa-ring", description: "与特定NPC结婚并共同生活的游戏机制。" },
+            { chinese: "孩子 / 家庭", english: "Children / Family", category: "mechanics", icon: "fas fa-baby", description: "结婚后可能拥有的子女和家庭扩展。" },
+            { chinese: "节日（例：复活节、葡萄节等）", english: "Festivals (e.g., Egg Festival, Flower Dance)", category: "mechanics", icon: "fas fa-glass-cheers", description: "游戏中定期举办的季节性活动。" },
+            { chinese: "公会 / 协会（例如 Joja）", english: "Faction / Corporation (e.g., Joja)", category: "mechanics", icon: "fas fa-users", description: "游戏中的组织或公司，可能有不同剧情线。" },
+            { chinese: "公告牌 / 委托板", english: "Bulletin Board / Quest Board", category: "mechanics", icon: "fas fa-clipboard-list", description: "接收任务和委托的公告板。" },
+            
+            // 耕种、采集、收割物质
+            { chinese: "小麦", english: "Wheat", category: "resources", icon: "fas fa-wheat-awn", description: "基础谷物作物，可用于制作面粉。" },
+            { chinese: "玉米", english: "Corn", category: "resources", icon: "fas fa-corn", description: "夏季作物，生长周期较长。" },
+            { chinese: "水稻", english: "Rice", category: "resources", icon: "fas fa-seedling", description: "需在水边生长的谷物作物。" },
+            { chinese: "土豆", english: "Potato", category: "resources", icon: "fas fa-potato", description: "根茎类作物，每株可能产出多个。" },
+            { chinese: "番茄", english: "Tomato", category: "resources", icon: "fas fa-apple-alt", description: "持续结果的作物，成熟后每隔几天可收获。" },
+            { chinese: "蓝莓", english: "Blueberry", category: "resources", icon: "fas fa-apple-alt", description: "夏季灌木作物，每次收获产出多个蓝莓。" },
+            { chinese: "浆果", english: "Berries", category: "resources", icon: "fas fa-apple-alt", description: "各种小型水果的统称。" },
+            { chinese: "蘑菇", english: "Mushrooms", category: "resources", icon: "fas fa-fungus", description: "在洞穴或森林中采集的菌类。" },
+            { chinese: "野草莓", english: "Wild Strawberries", category: "resources", icon: "fas fa-apple-alt", description: "春季在野外采集的草莓。" },
+            { chinese: "树液", english: "Sap", category: "resources", icon: "fas fa-tree", description: "从树上采集的粘稠液体，用于制作。" },
+            { chinese: "蜂蜜", english: "Honey", category: "resources", icon: "fas fa-honey-pot", description: "蜜蜂采集花蜜制成的天然甜味剂。" },
+            { chinese: "铜矿石", english: "Copper Ore", category: "resources", icon: "fas fa-gem", description: "基础金属矿石，用于制作铜质工具。" },
+            { chinese: "铁矿石", english: "Iron Ore", category: "resources", icon: "fas fa-gem", description: "中级金属矿石，用于制作铁质工具。" },
+            { chinese: "煤炭", english: "Coal", category: "resources", icon: "fas fa-cube", description: "燃料资源，用于熔炼和烹饪。" },
+            { chinese: "宝石", english: "Gems", category: "resources", icon: "fas fa-gem", description: "稀有矿物，可用于送礼或出售。" },
+            { chinese: "金锭", english: "Gold Bar/Ingot", category: "resources", icon: "fas fa-gem", description: "精炼后的黄金，用于高级制作。" },
+            { chinese: "木板", english: "Lumber", category: "resources", icon: "fas fa-tree", description: "加工过的木材，用于建筑和制作。" },
+            { chinese: "纤维", english: "Fiber", category: "resources", icon: "fas fa-leaf", description: "从杂草或特定植物中获取的材料。" },
+            
+            // 动物与产品
+            { chinese: "牛", english: "Cow", category: "livestock", icon: "fas fa-cow", description: "产奶的大型牲畜。" },
+            { chinese: "羊", english: "Sheep", category: "livestock", icon: "fas fa-sheep", description: "产羊毛的牲畜。" },
+            { chinese: "鸡", english: "Chicken", category: "livestock", icon: "fas fa-kiwi-bird", description: "产蛋的家禽。" },
+            { chinese: "鸭", english: "Duck", category: "livestock", icon: "fas fa-feather-alt", description: "产蛋和鸭毛的水禽。" },
+            { chinese: "猪", english: "Pig", category: "livestock", icon: "fas fa-piggy-bank", description: "能够寻找松露的牲畜。" },
+            { chinese: "牛奶", english: "Milk", category: "resources", icon: "fas fa-wine-bottle", description: "从奶牛身上获取的乳制品。" },
+            { chinese: "鸡蛋", english: "Eggs", category: "resources", icon: "fas fa-egg", description: "从鸡或鸭身上获取的蛋类产品。" },
+            { chinese: "羊毛", english: "Wool", category: "resources", icon: "fas fa-tshirt", description: "从羊身上剪取的毛发，用于制作布料。" },
+            { chinese: "鸭毛", english: "Duck Feather", category: "resources", icon: "fas fa-feather-alt", description: "从鸭身上获得的羽毛。" },
+            { chinese: "松露", english: "Truffle", category: "resources", icon: "fas fa-gem", description: "猪在户外放牧时发现的珍贵菌类。" },
+            { chinese: "围栏", english: "Fences", category: "buildings", icon: "fas fa-border-all", description: "用于限制动物活动范围的屏障。" },
+            
+            // 游戏机制与系统
+            { chinese: "耕种技能", english: "Farming Skill", category: "mechanics", icon: "fas fa-tractor", description: "通过耕种活动提升的技能，解锁相关配方。" },
+            { chinese: "采集技能", english: "Foraging Skill", category: "mechanics", icon: "fas fa-leaf", description: "通过采集野外资源提升的技能。" },
+            { chinese: "钓鱼技能", english: "Fishing Skill", category: "mechanics", icon: "fas fa-fish", description: "通过钓鱼活动提升的技能。" },
+            { chinese: "采矿技能", english: "Mining Skill", category: "mechanics", icon: "fas fa-mountain", description: "通过采矿活动提升的技能。" },
+            { chinese: "精力 / 体力", english: "Energy / Stamina", category: "mechanics", icon: "fas fa-battery-full", description: "进行活动消耗的能量值，需要休息或进食恢复。" },
+            { chinese: "生命值", english: "Health Points", category: "mechanics", icon: "fas fa-heart", description: "角色的健康值，受到伤害时会减少。" },
+            { chinese: "金币", english: "Coins", category: "mechanics", icon: "fas fa-coins", description: "游戏中的主要货币。" },
+            { chinese: "升级工具", english: "Tool Upgrades", category: "mechanics", icon: "fas fa-tools", description: "使用资源和金钱提升工具等级。" },
+            { chinese: "制作", english: "Crafting", category: "mechanics", icon: "fas fa-hammer", description: "使用材料制作物品的系统。" },
+            { chinese: "食谱", english: "Recipes", category: "mechanics", icon: "fas fa-book-open", description: "制作食物或物品的配方。" },
+            { chinese: "蓝图", english: "Blueprints", category: "mechanics", icon: "fas fa-map", description: "建造建筑或制作复杂物品的图纸。" },
+            { chinese: "送礼", english: "Gifting", category: "mechanics", icon: "fas fa-gift", description: "向NPC赠送物品以提升好感度的行为。" },
+            { chinese: "友好度", english: "Friendship Level", category: "mechanics", icon: "fas fa-heart", description: "与NPC关系的量化等级。" },
+            { chinese: "非玩家角色", english: "NPC (Non-Player Character)", category: "mechanics", icon: "fas fa-user", description: "游戏中由计算机控制的角色。" },
+            
+            // 原材料与矿物数据库 - 金属与矿石
+            { chinese: "奥利哈钢矿石", english: "Orichalcum Ore", category: "resources", icon: "fas fa-gem", description: "神话中的金属矿石，用于高级制作。" },
+            { chinese: "精金矿石", english: "Adamantite Ore", category: "resources", icon: "fas fa-gem", description: "极其坚硬的金属矿石。" },
+            { chinese: "石料", english: "Material Stone", category: "resources", icon: "fas fa-cube", description: "建筑用的石材。" },
+            { chinese: "铁", english: "Iron", category: "resources", icon: "fas fa-gem", description: "常见金属，用于制作工具和建筑。" },
+            { chinese: "铜", english: "Bronze", category: "resources", icon: "fas fa-gem", description: "铜合金，比纯铜更坚固。" },
+            { chinese: "银", english: "Silver", category: "resources", icon: "fas fa-gem", description: "贵金属，用于高级物品。" },
+            { chinese: "金", english: "Gold", category: "resources", icon: "fas fa-gem", description: "贵金属，用于高级工具和装饰。" },
+            { chinese: "钛", english: "Titanium", category: "resources", icon: "fas fa-gem", description: "高强度轻质金属。" },
+            { chinese: "铂 (白金)", english: "Platinum", category: "resources", icon: "fas fa-gem", description: "稀有贵金属，价值高于黄金。" },
+            { chinese: "大马士革钢", english: "Damascus Steel", category: "resources", icon: "fas fa-gem", description: "花纹钢材，用于制作高级武器。" },
+            { chinese: "奥利哈钢", english: "Orichalcum", category: "resources", icon: "fas fa-gem", description: "精炼后的奥利哈钢金属。" },
+            { chinese: "精金", english: "Adamantite", category: "resources", icon: "fas fa-gem", description: "精炼后的精金金属。" },
+            { chinese: "绿水镍矿", english: "Jamborite", category: "resources", icon: "fas fa-gem", description: "绿色的镍矿石。" },
+            { chinese: "铁铅矿", english: "Jagoite", category: "resources", icon: "fas fa-gem", description: "含铁和铅的矿石。" },
+            { chinese: "黄铁矿", english: "Pyrite", category: "resources", icon: "fas fa-gem", description: "又称愚人金，外观类似黄金的矿石。" },
+            
+            // 宝石与晶体
+            { chinese: "玻璃", english: "Glass Gemstone", category: "resources", icon: "fas fa-gem", description: "人造宝石材料。" },
+            { chinese: "玛瑙", english: "Agate Gemstone", category: "resources", icon: "fas fa-gem", description: "条纹状半宝石。" },
+            { chinese: "翡翠", english: "Jade Gemstone", category: "resources", icon: "fas fa-gem", description: "绿色的珍贵宝石。" },
+            { chinese: "水晶", english: "Crystal Gemstone", category: "resources", icon: "fas fa-gem", description: "透明的石英晶体。" },
+            { chinese: "紫水晶", english: "Amethyst Gemstone", category: "resources", icon: "fas fa-gem", description: "紫色的石英变种。" },
+            { chinese: "石榴石", english: "Garnet Gemstone", category: "resources", icon: "fas fa-gem", description: "深红色宝石。" },
+            { chinese: "月长石", english: "Moonstone Gemstone", category: "resources", icon: "fas fa-gem", description: "有月光般光泽的宝石。" },
+            { chinese: "黄玉", english: "Topaz Gemstone", category: "resources", icon: "fas fa-gem", description: "多种颜色的宝石。" },
+            { chinese: "欧泊", english: "Opal Gemstone", category: "resources", icon: "fas fa-gem", description: "有彩虹色变彩的宝石。" },
+            { chinese: "海蓝宝石", english: "Aquamarine", category: "resources", icon: "fas fa-gem", description: "淡蓝色的绿柱石变种。" },
+            { chinese: "祖母绿", english: "Emerald Gemstone", category: "resources", icon: "fas fa-gem", description: "绿色的珍贵宝石。" },
+            { chinese: "蓝宝石", english: "Sapphire Gemstone", category: "resources", icon: "fas fa-gem", description: "蓝色的刚玉宝石。" },
+            { chinese: "红宝石", english: "Ruby Gemstone", category: "resources", icon: "fas fa-gem", description: "红色的刚玉宝石。" },
+            { chinese: "钻石", english: "Diamond Gemstone", category: "resources", icon: "fas fa-gem", description: "最坚硬的天然矿物。" },
+            { chinese: "坦桑石", english: "Tanzanite Gemstone", category: "resources", icon: "fas fa-gem", description: "蓝紫色的稀有宝石。" },
+            { chinese: "碧玺", english: "Tourmaline", category: "resources", icon: "fas fa-gem", description: "有多种颜色的宝石。" },
+            { chinese: "亚历山大石", english: "Alexandrite", category: "resources", icon: "fas fa-gem", description: "变色效应显著的稀有宝石。" },
+            { chinese: "虎眼石", english: "Tiger's Eye", category: "resources", icon: "fas fa-gem", description: "有猫眼效应的石英变种。" },
+            { chinese: "猫眼石（欧泊）", english: "Opal", category: "resources", icon: "fas fa-gem", description: "有猫眼效应的宝石。" },
+            { chinese: "赤红猫眼石", english: "Fire Opal", category: "resources", icon: "fas fa-gem", description: "橙红色调的欧泊。" },
+            { chinese: "透闪石", english: "Tremolite", category: "resources", icon: "fas fa-gem", description: "钙镁硅酸盐矿物。" },
+            { chinese: "重晶石", english: "Baryte / Barite", category: "resources", icon: "fas fa-gem", description: "硫酸钡矿物。" },
+            { chinese: "方解石", english: "Calcite", category: "resources", icon: "fas fa-gem", description: "碳酸钙矿物。" },
+            { chinese: "白云石", english: "Dolomite", category: "resources", icon: "fas fa-gem", description: "钙镁碳酸盐矿物。" },
+            { chinese: "硅钙石", english: "Esperite", category: "resources", icon: "fas fa-gem", description: "铅锌硅酸盐矿物。" },
+            { chinese: "氟磷灰石", english: "Fluorapatite", category: "resources", icon: "fas fa-gem", description: "磷酸盐矿物。" },
+            { chinese: "日光榴石", english: "Helvite", category: "resources", icon: "fas fa-gem", description: "铍锰硅酸盐矿物。" },
+            { chinese: "蓝晶石", english: "Kyanite", category: "resources", icon: "fas fa-gem", description: "蓝色硅酸盐矿物。" },
+            { chinese: "孔雀石", english: "Malachite", category: "resources", icon: "fas fa-gem", description: "绿色碳酸铜矿物。" },
+            { chinese: "柱星叶石", english: "Neptunite", category: "resources", icon: "fas fa-gem", description: "黑色硅酸盐矿物。" },
+            { chinese: "雌黄", english: "Orpiment", category: "resources", icon: "fas fa-gem", description: "橙黄色砷硫化物矿物。" },
+            { chinese: "碧玉", english: "Jasper", category: "resources", icon: "fas fa-gem", description: "不透明的石英变种。" },
+            { chinese: "天青石", english: "Celestine", category: "resources", icon: "fas fa-gem", description: "天蓝色硫酸锶矿物。" },
+            { chinese: "黑曜石", english: "Obsidian", category: "resources", icon: "fas fa-gem", description: "火山玻璃。" },
+            { chinese: "青泥石", english: "Aerinite", category: "resources", icon: "fas fa-gem", description: "蓝色硅酸盐矿物。" },
+            { chinese: "新硅钙石", english: "Nekoite", category: "resources", icon: "fas fa-gem", description: "白色硅酸盐矿物。" },
+            { chinese: "晶洞（雷公蛋）", english: "Thunder Egg", category: "resources", icon: "fas fa-gem", description: "内部有水晶的球形岩石。" },
+            { chinese: "海洋碧玉（海洋石）", english: "Ocean Jasper（Ocean Stone）", category: "resources", icon: "fas fa-gem", description: "多彩的碧玉变种。" },
+            { chinese: "黄方解石（柠檬石）", english: "Yellow Calcite（Lemon Stone）", category: "resources", icon: "fas fa-gem", description: "黄色的方解石变种。" },
+            
+            // 加工后的宝石
+            { chinese: "泥石", english: "Mudstone", category: "resources", icon: "fas fa-gem", description: "细粒沉积岩。" },
+            { chinese: "沙岩", english: "Sandstone", category: "resources", icon: "fas fa-gem", description: "砂粒胶结形成的岩石。" },
+            { chinese: "石灰石", english: "Limestone", category: "resources", icon: "fas fa-gem", description: "碳酸钙沉积岩。" },
+            { chinese: "板岩", english: "Slate", category: "resources", icon: "fas fa-gem", description: "易裂成薄片的变质岩。" },
+            { chinese: "皂石", english: "Soapstone", category: "resources", icon: "fas fa-gem", description: "柔软的滑石岩。" },
+            { chinese: "玄武岩", english: "Basalt", category: "resources", icon: "fas fa-gem", description: "暗色火山岩。" },
+            { chinese: "花岗岩", english: "Granite", category: "resources", icon: "fas fa-gem", description: "粗粒火成岩。" },
+            { chinese: "大理石", english: "Marble", category: "resources", icon: "fas fa-gem", description: "变质石灰岩。" },
+            { chinese: "赤铁矿", english: "Hematite", category: "resources", icon: "fas fa-gem", description: "铁氧化物矿物。" },
+            { chinese: "玻璃", english: "Glass", category: "resources", icon: "fas fa-gem", description: "人造透明材料。" },
+            { chinese: "玛瑙", english: "Agate", category: "resources", icon: "fas fa-gem", description: "条纹状玉髓。" },
+            { chinese: "水晶", english: "Crystal", category: "resources", icon: "fas fa-gem", description: "透明的石英。" },
+            { chinese: "黄水晶", english: "Citrine", category: "resources", icon: "fas fa-gem", description: "黄色的石英变种。" },
+            { chinese: "紫水晶", english: "Amethyst", category: "resources", icon: "fas fa-gem", description: "紫色的石英。" },
+            { chinese: "石榴石", english: "Garnet", category: "resources", icon: "fas fa-gem", description: "硅酸盐矿物群。" },
+            { chinese: "月长石", english: "Moonstone", category: "resources", icon: "fas fa-gem", description: "长石族矿物。" },
+            { chinese: "黄玉", english: "Topaz", category: "resources", icon: "fas fa-gem", description: "硅酸盐矿物。" },
+            { chinese: "欧泊（猫眼石）", english: "Opal", category: "resources", icon: "fas fa-gem", description: "含水二氧化硅。" },
+            { chinese: "海蓝宝石", english: "Aquamarine", category: "resources", icon: "fas fa-gem", description: "淡蓝色绿柱石。" },
+            { chinese: "祖母绿", english: "Emerald", category: "resources", icon: "fas fa-gem", description: "绿色绿柱石。" },
+            { chinese: "蓝宝石", english: "Sapphire", category: "resources", icon: "fas fa-gem", description: "蓝色刚玉。" },
+            { chinese: "红宝石", english: "Ruby", category: "resources", icon: "fas fa-gem", description: "红色刚玉。" },
+            { chinese: "钻石", english: "Diamond", category: "resources", icon: "fas fa-gem", description: "碳的结晶形式。" },
+            { chinese: "坦桑石", english: "Tanzanite", category: "resources", icon: "fas fa-gem", description: "蓝紫色黝帘石。" },
+            { chinese: "帕拉伊巴碧玺", english: "Paraiba Tourmaline", category: "resources", icon: "fas fa-gem", description: "霓虹蓝色的稀有碧玺。" },
+            { chinese: "亚历山大变石", english: "Alexandrite", category: "resources", icon: "fas fa-gem", description: "变色金绿宝石。" },
+            
+            // 钓鱼相关
+            { chinese: "钓鱼竿", english: "Fishing Rod", category: "tools", icon: "fas fa-fishing-rod", description: "用于钓鱼的主要工具。" },
+            { chinese: "蟹笼", english: "Crab Pot", category: "tools", icon: "fas fa-crab", description: "放置在水中捕捉螃蟹和其他水生物的陷阱。" },
+            
+            // 游戏机制与系统补充
+            { chinese: "星级 / 品质", english: "Quality / Star Rating", category: "mechanics", icon: "fas fa-star", description: "物品的品质等级，影响售价和效果。" },
+            { chinese: "利润", english: "Profit", category: "mechanics", icon: "fas fa-money-bill-wave", description: "销售收入减去成本后的收益。" },
+            { chinese: "任务 / 委托", english: "Quests / Commissions", category: "mechanics", icon: "fas fa-tasks", description: "游戏中的目标或任务，完成可获得奖励。" },
+            { chinese: "季节", english: "Seasons", category: "mechanics", icon: "fas fa-calendar-alt", description: "游戏中的时间周期，影响可进行的活动。" },
+            { chinese: "耐久度 / 体力", english: "Durability / Stamina", category: "mechanics", icon: "fas fa-battery-three-quarters", description: "工具耐久度和角色体力的统称。" }
+        ];
 
-        setInterval(addLeaf, 400);
-        for(let i=0; i<10; i++) addLeaf();
+        // 类别映射到图标和标题
+        const categoryInfo = {
+            "tools": { title: "工具类", icon: "fas fa-tools" },
+            "farming": { title: "耕种阶段与活动", icon: "fas fa-seedling" },
+            "livestock": { title: "畜牧相关", icon: "fas fa-paw" },
+            "combat": { title: "战斗与武器", icon: "fas fa-fist-raised" },
+            "crafting": { title: "加工设备与制作", icon: "fas fa-industry" },
+            "buildings": { title: "建筑与设施", icon: "fas fa-home" },
+            "resources": { title: "资源与材料", icon: "fas fa-gem" },
+            "mechanics": { title: "游戏机制与系统", icon: "fas fa-cogs" },
+            "all": { title: "全部词汇", icon: "fas fa-list" }
+        };
+
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('glossary-container');
+            const searchBox = document.querySelector('.search-box');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const totalWordsElement = document.getElementById('total-words');
+            
+            // 显示总词汇数
+            totalWordsElement.textContent = glossaryData.length;
+            
+            // 按类别分组词汇
+            const groupedByCategory = {};
+            glossaryData.forEach(entry => {
+                if (!groupedByCategory[entry.category]) {
+                    groupedByCategory[entry.category] = [];
+                }
+                groupedByCategory[entry.category].push(entry);
+            });
+            
+            // 渲染词汇表
+            function renderGlossary(category = 'all', searchTerm = '') {
+                container.innerHTML = '';
+                
+                let filteredData = glossaryData;
+                
+                // 按类别筛选
+                if (category !== 'all') {
+                    filteredData = glossaryData.filter(entry => entry.category === category);
+                }
+                
+                // 按搜索词筛选
+                if (searchTerm) {
+                    const term = searchTerm.toLowerCase();
+                    filteredData = filteredData.filter(entry => 
+                        entry.chinese.toLowerCase().includes(term) || 
+                        entry.english.toLowerCase().includes(term) ||
+                        entry.description.toLowerCase().includes(term)
+                    );
+                }
+                
+                // 如果没有结果
+                if (filteredData.length === 0) {
+                    container.innerHTML = '<div class="no-results">未找到匹配的词汇，请尝试其他搜索词。</div>';
+                    return;
+                }
+                
+                // 如果是全部类别，按类别分组显示
+                if (category === 'all') {
+                    // 显示所有分类
+                    Object.keys(groupedByCategory).forEach(cat => {
+                        const categoryEntries = filteredData.filter(entry => entry.category === cat);
+                        if (categoryEntries.length > 0) {
+                            const categorySection = document.createElement('div');
+                            categorySection.className = 'category-section';
+                            categorySection.innerHTML = `
+                                <h2 class="category-title">
+                                    <i class="${categoryInfo[cat].icon}"></i>
+                                    ${categoryInfo[cat].title} (${categoryEntries.length})
+                                </h2>
+                            `;
+                            container.appendChild(categorySection);
+                            
+                            // 添加该分类下的词汇卡片
+                            categoryEntries.forEach(entry => {
+                                const card = createEntryCard(entry, searchTerm);
+                                container.appendChild(card);
+                            });
+                        }
+                    });
+                } else {
+                    // 显示单个分类
+                    const categorySection = document.createElement('div');
+                    categorySection.className = 'category-section';
+                    categorySection.innerHTML = `
+                        <h2 class="category-title">
+                            <i class="${categoryInfo[category].icon}"></i>
+                            ${categoryInfo[category].title} (${filteredData.length})
+                        </h2>
+                    `;
+                    container.appendChild(categorySection);
+                    
+                    // 添加该分类下的词汇卡片
+                    filteredData.forEach(entry => {
+                        const card = createEntryCard(entry, searchTerm);
+                        container.appendChild(card);
+                    });
+                }
+            }
+            
+            // 创建词汇卡片
+            function createEntryCard(entry, searchTerm = '') {
+                const card = document.createElement('div');
+                card.className = 'entry-card';
+                card.setAttribute('data-category', entry.category);
+                
+                // 高亮搜索词
+                let highlightedChinese = entry.chinese;
+                let highlightedEnglish = entry.english;
+                let highlightedDescription = entry.description;
+                
+                if (searchTerm) {
+                    const term = searchTerm.toLowerCase();
+                    const regex = new RegExp(`(${term})`, 'gi');
+                    
+                    highlightedChinese = entry.chinese.replace(regex, '<span class="highlight">$1</span>');
+                    highlightedEnglish = entry.english.replace(regex, '<span class="highlight">$1</span>');
+                    highlightedDescription = entry.description.replace(regex, '<span class="highlight">$1</span>');
+                }
+                
+                card.innerHTML = `
+                    <div class="entry-icon">
+                        <i class="${entry.icon}"></i>
+                    </div>
+                    <div class="entry-content">
+                        <div class="entry-chinese">${highlightedChinese}</div>
+                        <div class="entry-english">${highlightedEnglish}</div>
+                        <div class="entry-description">${highlightedDescription}</div>
+                    </div>
+                `;
+                
+                return card;
+            }
+            
+            // 初始渲染
+            renderGlossary('all');
+            
+            // 搜索功能
+            searchBox.addEventListener('input', function() {
+                const activeCategory = document.querySelector('.filter-btn.active').getAttribute('data-category');
+                renderGlossary(activeCategory, this.value);
+            });
+            
+            // 类别筛选功能
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // 更新活动按钮
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // 重新渲染
+                    const category = this.getAttribute('data-category');
+                    renderGlossary(category, searchBox.value);
+                });
+            });
+        });
     </script>
 </body>
 </html>
